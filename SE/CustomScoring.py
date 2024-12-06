@@ -230,8 +230,14 @@ def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
     # avgfl - average field length across documents in collection
     # param - free parameter
     # TODO - Define your own scoring function
-    return None
 
+    # TF IDF
+    #return tf * idf
+    #BM25
+    #return (idf**1) * ((tf * (1.6 + 1)) / (tf + 1.6 * ((1 - param) + param * fl / avgfl)))
+    k1=1.2
+    b=0.75
+    return idf *((tf * qf * (k1 + 1)) / (tf + k1 * ((1 - b) + b * (fl / avgfl))))
 
 class ScoringFunction(WeightingModel):
     def __init__(self, param=1.0):

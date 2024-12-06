@@ -1,0 +1,3 @@
+Best user-based model: KNNWithMeans (Pearson)
+KNNBasic RMSE: 2.7764
+KNNWithMeans RMSE: 1.4211

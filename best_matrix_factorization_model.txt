@@ -1,0 +1,5 @@
+Best matrix-factorization model: SVD (default)
+SVD (default) RMSE: 0.9792
+SVD (custom) RMSE: 0.9961
+SVDpp (default) RMSE: 3.1225
+SVDpp (custom) RMSE: 2.4267

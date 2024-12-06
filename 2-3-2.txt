@@ -1,0 +1,110 @@
+Post ID 139 top-10 results
+User ID 172
+	score 30
+User ID 240
+	score 30
+User ID 1177
+	score 30
+User ID 1747
+	score 30
+User ID 2664
+	score 30
+User ID 3612
+	score 30
+User ID 3655
+	score 30
+User ID 4773
+	score 30
+User ID 5588
+	score 30
+User ID 1310
+	score 29.67381153017711
+
+Post ID 162 top-10 results
+User ID 60
+	score 30
+User ID 172
+	score 30
+User ID 205
+	score 30
+User ID 285
+	score 30
+User ID 326
+	score 30
+User ID 694
+	score 30
+User ID 719
+	score 30
+User ID 917
+	score 30
+User ID 998
+	score 30
+User ID 1469
+	score 30
+
+Post ID 20 top-10 results
+User ID 444
+	score 20.59423619432671
+User ID 2715
+	score 19.38327421830986
+User ID 2233
+	score 18.26751995067866
+User ID 478
+	score 18.197591469029238
+User ID 4508
+	score 18.0491256693321
+User ID 3431
+	score 18.00632016833045
+User ID 5480
+	score 17.965399889017764
+User ID 3165
+	score 17.557238657099134
+User ID 4591
+	score 17.386704129282045
+User ID 1373
+	score 16.912863776142515
+
+Post ID 45 top-10 results
+User ID 5326
+	score 30
+User ID 4948
+	score 29.55930549267581
+User ID 925
+	score 29.29461044537281
+User ID 5169
+	score 28.995822013565615
+User ID 5391
+	score 28.4007798375727
+User ID 859
+	score 27.792213312772635
+User ID 2136
+	score 27.762223035207786
+User ID 3179
+	score 27.660013817075193
+User ID 3284
+	score 27.653260396600366
+User ID 2713
+	score 27.45804003511374
+
+Post ID 48 top-10 results
+User ID 172
+	score 30
+User ID 998
+	score 30
+User ID 3354
+	score 30
+User ID 3968
+	score 30
+User ID 1004
+	score 29.48292382611588
+User ID 2919
+	score 29.36994515701678
+User ID 925
+	score 29.356914443677873
+User ID 2037
+	score 29.037627020617002
+User ID 719
+	score 29.017592608203785
+User ID 5264
+	score 28.48860889809628
+

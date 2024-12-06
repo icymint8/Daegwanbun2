@@ -1,0 +1,3 @@
+Best item-based model: KNNWithMeans (Pearson)
+KNNBasic RMSE: 2.9235
+KNNWithMeans RMSE: 1.9254
