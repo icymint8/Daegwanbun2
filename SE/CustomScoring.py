@@ -220,7 +220,7 @@ class WeightLengthScorer(BaseScorer):
         raise NotImplementedError(self.__wclass__.__name__)
 
 
-def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
+#def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
     # tf - term frequency in the current document
     # idf - inverse document frequency
     # cf - term frequency in the collection
@@ -237,7 +237,79 @@ def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
     #return (idf**1) * ((tf * (1.6 + 1)) / (tf + 1.6 * ((1 - param) + param * fl / avgfl)))
     k1=1.2
     b=0.75
-    return idf *((tf * qf * (k1 + 1)) / (tf + k1 * ((1 - b) + b * (fl / avgfl))))
+    #return idf *((tf * qf * (k1 + 1)) / (tf + k1 * ((1 - b) + b * (fl / avgfl))))
+
+'''def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
+    """
+    Custom scoring function designed to enhance relevance ranking.
+    Combines BM25-like logic with query term frequency and term frequency in the collection.
+    """
+    # Constants (you can tune these parameters)
+    k1 = 1.6  # BM25 term frequency scaling factor
+    b = 0.75  # Length normalization weight
+    alpha = 0.3  # Weight for collection frequency factor
+    beta = 0.7  # Weight for query frequency factor
+
+    # Document length normalization (BM25 component)
+    length_norm = (1 - b) + b * (fl / avgfl)
+
+    # Term frequency weight (BM25 inspired)
+    tf_weight = (tf * (k1 + 1)) / (tf + k1 * length_norm)
+
+    # Collection frequency weight (penalize overly frequent terms)
+    cf_weight = alpha * (1 / (1 + cf))
+
+    # Query frequency weight (boost terms that appear more often in the query)
+    qf_weight = beta * qf
+
+    # Final score: Combine components
+    score = idf * tf_weight * (1 + cf_weight + qf_weight)
+
+    return score'''
+
+def intappscorer(tf, idf, cf, qf, dc, fl, avgfl, param):
+    """
+    확장된 BM25 기반 커스텀 스코어링 함수:
+    1. TF-IDF와 BM25를 결합
+    2. 문서 길이 정규화
+    3. Query Boosting 및 Query Length Normalization 추가
+    4. 매우 빈번한 용어(corpus-wide)를 페널티
+    """
+
+    # 파라미터 (튜닝 가능)
+    k1 = 2  # BM25 TF scaling
+    b = 0.75  # 문서 길이 정규화 비율
+    alpha = 0.25  # Collection frequency 조정 가중치
+    beta = 0.5  # Query frequency 가중치
+    gamma = 0.3  # Query Length Normalization 가중치
+    delta = 1.5  # Overweight for rare terms with high IDF
+
+    # 1. 문서 길이 정규화
+    length_norm = (1 - b) + b * (fl / avgfl)
+
+    # 2. TF Weight (BM25 스타일)
+    tf_weight = (tf * (k1 + 1)) / (tf + k1 * length_norm)
+
+    # 3. Collection Frequency (빈번한 용어 페널티)
+    cf_weight = alpha / (1 + cf)
+
+    # 4. Query Frequency Weight (자주 나타나는 쿼리 용어 보너스)
+    qf_weight = beta * qf
+
+    # 5. Query Length Normalization (긴 쿼리의 영향 감소)
+    query_norm = gamma / (1 + qf)
+
+    # 6. Rare Term Overweighting (IDF가 높은 용어 보너스)
+    rare_term_boost = delta * idf
+
+    # 최종 스코어 계산
+    score = idf * tf_weight * (1 + cf_weight + qf_weight + query_norm + rare_term_boost)
+
+    return score
+
+
+
+
 
 class ScoringFunction(WeightingModel):
     def __init__(self, param=1.0):
@@ -275,7 +347,6 @@ def bm25(idf, tf, fl, avgfl, B, K1):
     # fl - field length in the current document
     # avgfl - average field length across documents in collection
     # B, K1 - free paramters
-
     return idf * ((tf * (K1 + 1)) / (tf + K1 * ((1 - B) + B * fl / avgfl)))
 
 

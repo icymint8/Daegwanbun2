@@ -44,8 +44,6 @@ def evaluate(query_dict, relevent_dict, results_dict):
         results = results_dict[queryID]
         relevantDocuments = relevent_dict[queryID]
         relDocCount = len(relevantDocuments)
-        #print(queryID)######
-        #print(results)##################
 
         for document in results:
             if document in relevantDocuments:
@@ -59,14 +57,12 @@ def evaluate(query_dict, relevent_dict, results_dict):
             if relevantCount == relDocCount:
                 break
         score = score / relDocCount
-        #print(score)############
         BPREF.append(score)
     
     print(np.mean(BPREF))
-    print(BPREF)#################
 
 if __name__ == '__main__':
-    query_dict = readQueryFile('doc/query.text')
+    query_dict = readQueryFile('doc/query.text')############################
     relevant_dict = getGroundtruthRelevance(query_dict.keys())
     results_dict = getSearchEngineResult(query_dict)
     evaluate(query_dict, relevant_dict, results_dict)
